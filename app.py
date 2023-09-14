@@ -7,9 +7,12 @@ from indexer import create_index
 files = []
 index = {}
 def on_create_index():
+    global files
+    global index
     if os.path.isdir("files"):
         files = os.listdir("files")
         index = create_index("files", "index.json")
+        st.write("Index created")
 st.button("Create Index", on_click=on_create_index)
 
 # search for words
