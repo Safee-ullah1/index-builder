@@ -12,7 +12,7 @@ def create_files(count, output):
         while is_error:
             try:
                 page = wikipedia.page(
-                    title, auto_suggest=False, redirect=True, preload=False)
+                    title, auto_suggest=False, redirect=True, preload=False).content
                 is_error = False
             except wikipedia.DisambiguationError as e:
                 continue
