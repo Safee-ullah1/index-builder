@@ -5,6 +5,7 @@ import random
 
 
 def create_files(count, output):
+    print("Creating files...")
     for i in range(count):
         title = wikipedia.random(1)
         is_error = True
@@ -20,3 +21,4 @@ def create_files(count, output):
                 os.mkdir(output)
             with open(os.path.join(output, f"{title}.txt"), "w+", encoding="utf-8") as file:
                 file.write(page)
+                print(f"Created {title}.txt")

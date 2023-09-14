@@ -13,13 +13,16 @@ def on_create_index():
         files = os.listdir("files")
         index = create_index("files", "index.json")
         st.write("Index created")
-st.button("Create Index", on_click=on_create_index)
 
 # search for words
 search = st.text_input("Search")
 if search:
+    if len(index.items()) == 0:
+        on_create_index()
+    print(search)
     for word in search.split(" "):
         if word in index:
+            print(word)
             files_info = index[word]
             file_with_count = {}
             for file_info in files_info:

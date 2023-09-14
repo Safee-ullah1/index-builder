@@ -6,6 +6,7 @@ def create_index(directory, output):
         raise Exception("Directory not found.")
     
     files = os.listdir(directory)
+    print(files)
     index = {}
     for file in files:
         full_path = os.path.join(directory, file)
