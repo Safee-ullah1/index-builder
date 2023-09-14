@@ -1,14 +1,18 @@
 import requests
 import wikipedia
 import os
-from random import randint
+import random
 
 
 def create_files(count, output):
     for i in range(count):
         title = wikipedia.random(1)
-        text = wikipedia.page(title).content
-        if not os.path.isdir(output):
-            os.mkdir(output)
-        with open(os.path.join(output, f"{title}.txt"), "w+", encoding="utf-8") as file:
-            file.write(text)
+        try:
+            p = wikipedia.page(title)
+        except wikipedia.DisambiguationError as e:
+            random_page = random.choice(e.options)
+            text = wikipedia.page(random_page).content
+            if not os.path.isdir(output):
+                os.mkdir(output)
+            with open(os.path.join(output, f"{title}.txt"), "w+", encoding="utf-8") as file:
+                file.write(text)
